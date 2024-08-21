@@ -72,36 +72,32 @@
 
             </div>
             <div class="owl-carousel other-carousel owl-theme pt-1">
-               
-                <div class="card item-card-flashsale ">
-                    <div class="card-img-top-container">
-                         
-                                    <img class="card-img-top img-fluid px-1 py-2" alt="Product Image" src="" />
-                               
-                                    <img class="card-img-top img-fluid px-1 py-2" alt="Product Image" src="~/imgs/imgProducts/@listProduct.ImageProduct" />
-
-                        
-                           
-                    </div>
-                    <div class="card-body">
-                            <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@listProduct.Id" class="text-decoration-none">
-                                <p class="card-title py-0"> </p>
-                        </a>
-                            <h6 class="card-text text-price py-0"> </h6>
-                            <p><del></del> @* <span class="badge badge-danger">-14%</span> *@</p>
-                        <div>
-                            <p class="my-0">Model:&nbsp;</p>
-                                <p class="my-1">Xuất xứ:&nbsp; </p>
-                                <p class="my-1">Nhà sản xuất:&nbsp; </p>
-
+                @foreach($AscProduct as $product)
+                    <div class="card item-card-flashsale ">
+                        <div class="card-img-top-container">
+                            <img class="card-img-top img-fluid px-1 py-2" alt="Product Image"
+                                src="{{asset('public/file/')}}/img/img_product/{{$product->image}}" />
                         </div>
-
-
+                        <div class="card-body">
+                            <a href="{{route('User.ProductDetails', [khongdau($product->name_product), $product->id])}}" class="text-decoration-none">
+                                <p class="card-title py-0">{{$product->name_product}} </p>
+                            </a>
+                            <h6 class="card-text text-price py-0">{{ number_format($product->discount, 0, ',', '.') }} ₫
+                            </h6>
+                            <p><del>{{ number_format($product->price_product, 0, ',', '.') }} ₫</del></p>
+                            <!-- <span class="badge badge-danger">-14%</span> -->
+                            <div>
+                                <p class="my-0">Model:&nbsp;{{$product->model}}</p>
+                                <p class="my-1">Xuất xứ:&nbsp; {{$product->producer}}</p>
+                                <p class="my-1">Nhà sản xuất:&nbsp;{{$product->origin}}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-              
+                @endforeach
+
+
             </div>
-     
+
         </div>
     </div>
 </section>
@@ -113,33 +109,32 @@
     <div class="container px-0">
         <h2 class="mb-4 text-color-title font-weight-bold">Gợi ý hôm nay</h2>
         <div class="row px-2">
-          
+            @foreach($RandomProduct as $product)
                 <div class="col-lg-2 col-6 px-1 py-2">
                     <div class="card item-card-flashsale">
-                    <div class="card-img-top-container">
-                       
-                                    <img class="card-img-top img-fluid px-1 py-2" alt="Product Image" src="" />
-                         
-                                    <img class="card-img-top img-fluid px-1 py-2" alt="Product Image" src="~/imgs/imgProducts/@randomProducts.ImageProduct" />
-
-                    </div>
-                    <div class="card-body">
-                            <a  class="text-decoration-none">
-                            <p class="card-title"></p>
-                        </a>
-                            <h6 class="card-text text-price my-0 py-1"> </h6>
-                            <p class="py-0"><del></del>  <span class="badge badge-danger">-14%</span> </p>
-
-                        <div>
-                                <p class="my-0">Model:&nbsp;</p>
-                                <p class="my-1">Xuất xứ:&nbsp; </p>
-                                <p class="my-1">Nhà sản xuất:&nbsp; </p>
+                        <div class="card-img-top-container">
+                            <img class="card-img-top img-fluid px-1 py-2" alt="Product Image"
+                                src="{{asset('public/file/')}}/img/img_product/{{$product->image}}" />
                         </div>
+                        <div class="card-body">
+                            <a href="{{route('User.ProductDetails', [khongdau($product->name_product), $product->id])}}" class="text-decoration-none">
+                                <p class="card-title">{{$product->name_product}}</p>
+                            </a>
+                            <h6 class="card-text text-price my-0 py-1"> {{ number_format($product->discount, 0, ',', '.') }}
+                            ₫</h6>
+                            <p class="py-0"><del>{{ number_format($product->price_product, 0, ',', '.') }} ₫</del> <span
+                                    class="badge badge-danger">-14%</span> </p>
 
+                            <div>
+                                <p class="my-0">Model:&nbsp;{{$product->model}}</p>
+                                <p class="my-1">Xuất xứ:&nbsp; {{$product->producer}}</p>
+                                <p class="my-1">Nhà sản xuất:&nbsp;{{$product->origin}} </p>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+            @endforeach
         </div>
     </div>
 </section>
@@ -158,19 +153,19 @@
 
             <div class="py-4 px-5 row d-flex justify-content-between">
 
-              
+                @foreach ($ListCategory as $category)
+
                     <div class="col-lg-2 col-md-3 col-sm-4 col-6 category-item-test bg-white my-3 mx-0 px-0 text-center">
-                      
-                        <a  class="text-decoration-none">
+
+                        <a href="{{route('User.Product', $category->id)}}" class="text-decoration-none">
                             <div class="circle mx-auto mb-2">
-                                <img src="~/imgs/imgCategory/@listCategory.Image"
-                                     alt=""
-                                     class="img-fluid inner-circle" />
+                                <img src="{{asset('public/file/')}}/img/img_category/{{$category->image}}" alt="" class="img-fluid inner-circle" />
                             </div>
                             <p class="category-text m-auto"></p>
                         </a>
                     </div>
-                
+                @endforeach
+
 
 
 

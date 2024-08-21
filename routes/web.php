@@ -2,15 +2,22 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\UserProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
 
 
-
+//route user
 Route::get("/", [HomeController::class, 'Index'])->name("User.Home");
-
-
-
+Route::get("/product/{id}", [UserProductController::class, 'Index'])->name("User.Product");
+Route::get("/details/{name}/{id}", [UserProductController::class, 'Details'])->name("User.ProductDetails");
+Route::get('/cart', [CartController::class, 'ViewCart'])->name('User.ViewCart');
+Route::post('/cart/add', [CartController::class, 'AddToCart'])->name('User.AddToCart');
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'removeItem'])->name('cart.remove');
+Route::get('/cart/item-count', [CartController::class, 'GetCartItemCount'])->name('User.GetCartItemCount');
+//end route user
 
 // route Admin
 Route::prefix('system')->group(function () {

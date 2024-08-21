@@ -117,7 +117,7 @@
                                 <label for="inputNumber" class="col-sm-4 col-form-label">Hình ảnh<span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" onchange="onUpload(this)" name="image"
+                                    <input value="{{old('image')}}" class="form-control" type="file" onchange="onUpload(this)" name="image"
                                         accept="image/*">
                                     {!!$errors->first('image', '<div class="has-error text-danger">:message</div>')!!}
                                     <div id="preview" class="mt-4"></div>
