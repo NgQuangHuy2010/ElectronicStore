@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -75,6 +76,7 @@ class CategoryController extends Controller
             toastr()->success(' Cập nhật thành công !');
             return redirect()->route("Admin.CategoryIndex");
         } else {
+            // dd($olddata);
             return view("Admin/Category/Update", $olddata);
         }
 
@@ -82,6 +84,11 @@ class CategoryController extends Controller
     public function Delete($id)
     {
         try {
+            if (Products::where('idCategory', $id)->exists()) {
+        
+                toastr()->error('Đang có sản phẩm trong danh mục này !!!');
+                return redirect()->route('Admin.CategoryIndex');
+            }
             $load = Category::find($id);
             @unlink('public/file/img/img_category/' . $load->image);
             Category::destroy($id);

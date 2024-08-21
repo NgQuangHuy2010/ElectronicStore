@@ -26,40 +26,40 @@
 
                             <div class="row mb-3">
                                 <div class="col-lg-12">
-                                <label for="inputText" class=" col-form-label">Tên sản phẩm <span
-                                        class="text-danger">*</span></label>
-                               
+                                    <label for="inputText" class=" col-form-label">Tên sản phẩm <span
+                                            class="text-danger">*</span></label>
+
                                     <input value="{{old('name_product')}}" name="name_product" type="text"
                                         class="form-control">
                                     {!!$errors->first('name_product', '<div class="has-error text-danger">:message</div>')!!}
                                 </div>
-                             
+
                             </div>
                             <div class="row my-5">
-                            <div class="col-sm-6">
-                                <label for="inputText" class=" col-form-label">Danh mục <span
-                                        class="text-danger">*</span></label>
-                               
-                                    <select class="form-select" aria-label="Default select example" name="idCategory">
-
+                                <div class="col-sm-6">
+                                    <label for="inputText" class=" col-form-label">Danh mục <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select" name="idCategory">
+                                        <option value="">Chọn danh mục...</option>
+                                        @foreach($category as $item)
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
                                     </select>
-
                                     {!!$errors->first('idCategory', '<div class="has-error text-danger">:message</div>')!!}
                                 </div>
-                               <div class="col-sm-6">
-                               <label for="inputText" class=" col-form-label">Model<span
-                                        class="text-danger">*</span></label>
-                                
+                                <div class="col-sm-6">
+                                    <label for="inputText" class=" col-form-label">Model<span
+                                            class="text-danger">*</span></label>
+
                                     <input value="{{old('model')}}" name="model" type="text" class="form-control">
                                     {!!$errors->first('model', '<div class="has-error text-danger">:message</div>')!!}
-                               </div>
+                                </div>
                             </div>
 
                             <div class="row my-5">
                                 <!-- Nhà sản xuất -->
                                 <div class="col-sm-6">
-                                    <label for="producer" class="col-form-label">Nhà sản xuất <span
-                                            class="text-danger">*</span></label>
+                                    <label for="producer" class="col-form-label">Nhà sản xuất </label>
                                     <input value="{{ old('producer') }}" name="producer" type="text"
                                         class="form-control">
                                     {!! $errors->first('producer', '<div class="has-error text-danger">:message</div>') !!}
@@ -67,25 +67,16 @@
 
                                 <!-- Nguồn gốc -->
                                 <div class="col-sm-6">
-                                    <label for="origin" class="col-form-label">Nguồn gốc <span
-                                            class="text-danger">*</span></label>
+                                    <label for="origin" class="col-form-label">Nguồn gốc </label>
                                     <input value="{{ old('origin') }}" name="origin" type="text" class="form-control">
                                     {!! $errors->first('origin', '<div class="has-error text-danger">:message</div>') !!}
                                 </div>
                             </div>
 
-                          
 
 
-                            <!-- <div class="row my-5">
-                                <label for="inputText" class="col-sm-4 col-form-label">Mô tả sản phẩm<span
-                                        class="text-danger">*</span></label>
-                                <div class="col-sm-8">
-                                    <textarea value="{{old('description')}}" name="description" type="text"
-                                        class="form-control"></textarea>
-                                    {!!$errors->first('description', '<div class="has-error text-danger">:message</div>')!!}
-                                </div>
-                            </div> -->
+
+
                         </div>
                     </div>
 
@@ -95,28 +86,29 @@
                             <!-- General Form Elements -->
                             <div class="row my-2">
                                 <div class="col-sm-6">
-                                <label for="inputText" class=" col-form-label">Giá gốc<span
-                                        class="text-danger">*</span></label>
-                                
-                                    <input value="{{old('price_product')}}" name="price_product" type="text"
-                                        class="form-control">
+                                    <label for="inputText" class=" col-form-label">Giá gốc<span
+                                            class="text-danger">*</span></label>
+
+                                    <input value="{{old('price_product')}}" name="price_product" 
+                                        type="text" class="form-control money-input">
                                     {!!$errors->first('price_product', '<div class="has-error text-danger">:message</div>')!!}
-                                
+         
                                 </div>
-                            
-                               <div class="col-sm-6">
-                               <label for="inputText" class=" col-form-label">Giá bán<span
-                                        class="text-danger">*</span></label>
-                               
-                                    <input value="{{old('discount')}}" name="discount" type="text" class="form-control">
+
+                                <div class="col-sm-6">
+                                    <label for="inputText" class=" col-form-label">Giá bán<span
+                                            class="text-danger">*</span></label>
+
+                                    <input value="{{old('discount')}}" name="discount" type="text" class="form-control money-input">
                                     {!!$errors->first('discount', '<div class="has-error text-danger">:message</div>')!!}
-                               
-                               </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-5">
                     <div class="card">
                         <div class="card-body">
@@ -132,8 +124,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="inputNumber" class="col-sm-4 col-form-label">Hình ảnh thông số<span
-                                        class="text-danger">*</span></label>
+                                <label for="inputNumber" class="col-sm-4 col-form-label">Hình ảnh thông số</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="file" onchange="onUpload(this)"
                                         name="image_specifications" accept="image_specifications/*">
@@ -156,6 +147,20 @@
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mô tả sản phẩm</h5>
+                            <label for="inputText" class="col-form-label">Mô tả</label>
+                            <textarea value="{{old('description')}}" name="description" id="description" type="text"
+                                class="form-control" cols="30" rows="10"></textarea>
+                            <script>CKEDITOR.replace('description');</script>
+                            {!!$errors->first('description', '<div class="has-error text-danger">:message</div>')!!}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form><!-- End General Form Elements -->
 
     </section>
@@ -176,5 +181,21 @@
 
     // Initialize Dropify plugin
     $('.dropify').dropify();
+</script>
+
+<script>
+    // Hàm dùng để định dạng số tiền
+    function formatCurrency(input) {
+        var value = input.value.replace(/\D/g, ''); // Loại bỏ tất cả ký tự không phải là số
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Thêm dấu phẩy ngăn cách hàng nghìn
+        input.value = value + ' đ'; // Thêm đơn vị tiền tệ
+    }
+
+    // Gắn sự kiện cho tất cả các input có class "money-input"
+    document.querySelectorAll('.money-input').forEach(function (input) {
+        input.addEventListener('input', function (e) {
+            formatCurrency(this);
+        });
+    });
 </script>
 @endsection

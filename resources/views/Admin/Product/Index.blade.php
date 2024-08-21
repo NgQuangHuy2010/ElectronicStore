@@ -46,13 +46,13 @@
                                     <td>{{$value['name_product']}}</td>
                                     <td><img width="70" src="{{asset('public/file/img/img_product/' . $value->image)}}"
                                             alt=""></td>
-                                    <td>{{$value['price_product']}}</td>
-                                    <td>{{$value['discount']}}</td>
+                                    <td>  {{ number_format($value['price_product'], 0, ',', '.') }} VNĐ</td>
+                                    <td>{{ number_format($value['discount'], 0, ',', '.') }} VNĐ</td>
                                     <td>{{$value['model']}}</td>
                                     <td>
-                                        <a href="{{route('Admin.CategoryUpdate', $value['id'])}}" class="px-2"><i
+                                        <a href="{{route('Admin.ProductUpdate', $value['id'])}}" class="px-2"><i
                                                 class="bi bi-pencil-square" style="color:green;"></i></a>
-                                        <a href="{{route('Admin.CategoryDelete', $value['id'])}}"
+                                        <a href="{{route('Admin.ProductDelete', $value['id'])}}"
                                             onclick="confirmation(event)"><i class="bi bi-trash2 "
                                                 style="color:red;"></i></a>
                                     </td>

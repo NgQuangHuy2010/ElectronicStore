@@ -25,7 +25,8 @@
   <link href="{{asset('public/Admin')}}/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="{{asset('public/Admin')}}/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="{{asset('public/Admin')}}/vendor/simple-datatables/style.css" rel="stylesheet">
-
+  <script src="{{asset('public')}}/editor/ckeditor/ckeditor.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="{{asset('public/Admin')}}/css/style.css" rel="stylesheet">
 </head>
@@ -395,6 +396,7 @@
   <script src="{{asset('public/Admin')}}/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="{{asset('public/Admin')}}/vendor/tinymce/tinymce.min.js"></script>
   <script src="{{asset('public/Admin')}}/vendor/php-email-form/validate.js"></script>
+
 
   <!-- Template Main JS File -->
   <script src="{{asset('public/Admin')}}/js/main.js"></script>
