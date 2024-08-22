@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('public/User')}}/css/style.css" type="text/css">
     <link rel="stylesheet" href="{{asset('public/User')}}/owlcarousel/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="{{asset('public/User')}}/owlcarousel/assets/owl.theme.default.min.css" />
+    <script src="{{asset('public/User')}}/js/jquery-3.3.1.min.js"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -352,7 +353,7 @@
     <!-- Footer Section End -->
     <!-- Js Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="{{asset('public/User')}}/js/jquery-3.3.1.min.js"></script>
+    
     <script src="{{asset('public/User')}}/js/bootstrap.min.js"></script>
     <script src="{{asset('public/User')}}/js/jquery-ui.min.js"></script>
     <script src="{{asset('public/User')}}/js/jquery.slicknav.js"></script>

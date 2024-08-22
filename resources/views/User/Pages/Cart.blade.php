@@ -3,7 +3,8 @@
 @section('content')
 @if (empty($cart)) {{-- Kiểm tra xem giỏ hàng có rỗng hay không --}}
     <div class="h-50 d-flex flex-column align-items-center justify-content-center">
-        <img src="{{asset('public/User')}}/img/cart-null.png" alt="Cart Empty" class="img-fluid mb-3" style="max-width: 250px;">
+        <img src="{{asset('public/User')}}/img/cart-null.png" alt="Cart Empty" class="img-fluid mb-3"
+            style="max-width: 250px;">
         <h4 class="text-center">
             Giỏ hàng trống
             <a class="text-danger" href="{{ route('User.Home') }}">Tiếp tục mua hàng</a>
@@ -28,17 +29,22 @@
                             <tr>
                                 <td class="align-middle">
                                     {{ $item['productName'] }}
-                                    <span><img src="{{ $item['productImage'] }}" class="card-img-top img-fluid px-1 py-2" alt="Product Image" style="max-width: 100px; max-height: 100px;" /></span>
+                                    <span><img src="{{ $item['productImage'] }}" class="card-img-top img-fluid px-1 py-2"
+                                            alt="Product Image" style="max-width: 100px; max-height: 100px;" /></span>
                                 </td>
                                 <td class="align-middle">{{ number_format($item['productPrice'], 0, ',', '.') }} ₫</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <input min="1" type="number" class="form-control form-control-sm" value="{{ $item['quantity'] }}" name="quantity" data-product-id="{{ $productId }}" onchange="updateCart(this)">
+                                        <input min="1" type="number" class="form-control form-control-sm"
+                                            value="{{ $item['quantity'] }}" name="quantity" data-product-id="{{ $productId }}"
+                                            onchange="updateCart(this)">
                                     </div>
                                 </td>
-                                <td class="align-middle" id="totalPrice_{{ $productId }}">{{ number_format($item['productPrice'] * $item['quantity'], 0, ',', '.') }} ₫</td>
+                                <td class="align-middle" id="totalPrice_{{ $productId }}">
+                                    {{ number_format($item['productPrice'] * $item['quantity'], 0, ',', '.') }} ₫</td>
                                 <td class="align-middle">
-                                <a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="removeItem('{{ $productId }}')"><i class="fa fa-times text-light"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"
+                                        onclick="removeItem('{{ $productId }}')"><i class="fa fa-times text-light"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -61,20 +67,25 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h4 class="font-weight-medium">Tạm tính</h4>
-                            <h5 class="font-weight-medium text-danger" id="totalAmount">{{ number_format($totalAmount, 0, ',', '.') }} ₫</h5>
+                            <h5 class="font-weight-medium text-danger" id="totalAmount">
+                                {{ number_format($totalAmount, 0, ',', '.') }} ₫</h5>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h5 class="font-weight-medium">Phí vận chuyển</h5>
-                            <h5 class="font-weight-medium">0 ₫</h5>
+                            <h5 class="font-weight-medium">{{ number_format($shipping, 0, ',', '.') }} ₫</h5>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h4 class="font-weight-bold text-danger">Tổng tiền thanh toán</h4>
-                            <h4 class="font-weight-bold text-danger" id="totalPayment">{{ number_format($totalAmount, 0, ',', '.') }} ₫</h4>
+                            <h4 class="font-weight-bold text-danger" id="totalPayment">
+                                {{ number_format($totalPayment, 0, ',', '.') }} ₫</h4>
                         </div>
-                        <form method="post" action="">
+                        <form method="post" action="{{route("User.CheckoutIndex")}}">
                             @csrf
+                            <input type="hidden" name="totalAmount" value="{{ $totalAmount }}">
+                            <input type="hidden" name="shippingFee" value="{{ $shipping }}">
+                            <input type="hidden" name="totalPayment" value="{{ $totalPayment }}">
                             <div class="col-lg-12 pt-3">
                                 <button type="submit" class="btn btn-info btn-lg w-100">Thanh toán</button>
                             </div>
@@ -117,14 +128,19 @@
                     // Nếu phần tử tổng giá của sản phẩm tồn tại, cập nhật giá trị
                     if (totalPriceElement) {
                         totalPriceElement.innerText = formatCurrency(response.totalPrice);
+                        // Cập nhật giá trị hidden trong form
+                        document.querySelector('input[name="totalAmount"]').value = response.totalAmount;
                     }
                     // Nếu phần tử tổng số tiền tồn tại, cập nhật giá trị
                     if (totalAmountElement) {
                         totalAmountElement.innerText = formatCurrency(response.totalAmount);
+                        document.querySelector('input[name="shippingFee"]').value = response.shipping;
                     }
                     // Nếu phần tử tổng số tiền thanh toán tồn tại, cập nhật giá trị
                     if (totalPaymentElement) {
                         totalPaymentElement.innerText = formatCurrency(response.totalPayment);
+                        // Cập nhật giá trị hidden trong form
+                        document.querySelector('input[name="totalPayment"]').value = response.totalPayment;
                     }
                 } else {
                     // Hiển thị thông báo lỗi nếu cập nhật không thành công
@@ -173,4 +189,3 @@
 </script>
 
 @endsection
-

@@ -14,11 +14,15 @@ class CartController extends Controller
         $totalAmount = array_reduce($cart, function ($carry, $item) {
             return $carry + ($item['productPrice'] * $item['quantity']);
         }, 0);
-
+        //tạo hàm Shipping riêng biệt để gán giá ship
+        $shipping = $this->Shipping();
+        $totalPayment = $totalAmount + $shipping;
         // Trả về view với dữ liệu giỏ hàng và tổng tiền
         return view('User/Pages/Cart', [
             'cart' => $cart,
-            'totalAmount' => $totalAmount
+            'totalAmount' => $totalAmount,
+            'totalPayment' => $totalPayment,
+            'shipping' => $shipping
         ]);
     }
 
@@ -54,13 +58,13 @@ class CartController extends Controller
     {
         // Lấy giỏ hàng từ session
         $cart = Session::get('cart', []);
-    
-        // Đếm số lượng sản phẩm độc nhất trong giỏ hàng
+
+        // Đếm số lượng id sản phẩm  trong giỏ hàng
         $itemCount = count($cart);
-    
+
         return response()->json(['itemCount' => $itemCount]);
     }
-    
+
     public function updateCart(Request $request)
     {
         try {
@@ -84,16 +88,22 @@ class CartController extends Controller
                 return $carry + ($item['productPrice'] * $item['quantity']);
             }, 0);
 
+            //tạo hàm Shipping riêng biệt để gán giá ship
+        $shipping = $this->Shipping();
+        $totalPayment = $totalAmount + $shipping;
+
             return response()->json([
                 'success' => true,
                 'totalPrice' => $cart[$productId]['productPrice'] * $quantity,
                 'totalAmount' => $totalAmount,
-                'totalPayment' => $totalAmount
+                'shipping' => $shipping,
+                'totalPayment' => $totalPayment
             ]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
+
 
     public function removeItem(Request $request)
     {
@@ -113,5 +123,10 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
+    }
+    public function Shipping()
+    {
+        // Logic tính toán phí vận chuyển, có thể là cố định hoặc phụ thuộc vào các điều kiện khác
+        return 30000; // Ví dụ: Phí vận chuyển cố định là 30,000₫
     }
 }

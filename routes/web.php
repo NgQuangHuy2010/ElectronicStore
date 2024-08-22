@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\UserProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
@@ -17,6 +18,8 @@ Route::post('/cart/add', [CartController::class, 'AddToCart'])->name('User.AddTo
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'removeItem'])->name('cart.remove');
 Route::get('/cart/item-count', [CartController::class, 'GetCartItemCount'])->name('User.GetCartItemCount');
+Route::match(['get', 'post'],'/checkout', [CheckoutController::class, 'Index'])->name('User.CheckoutIndex');
+
 //end route user
 
 // route Admin
