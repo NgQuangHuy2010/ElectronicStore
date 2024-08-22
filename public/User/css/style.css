@@ -2364,7 +2364,7 @@ i {
 		border-radius: 4px;
 	}
 .checkout__select {
-	margin-bottom: 24px;
+	margin-bottom: 0px;
 }
 .checkout__select p {
 	color: #1c1c1c;
@@ -2489,7 +2489,19 @@ i {
 	font-weight: 700;
 	float: right;
 }
-
+.checkout__order .checkout__order__ship{
+	font-size: 16px;
+	color: #1c1c1c;
+	font-weight: 600;
+	border-bottom: 1px solid #e1e1e1;
+	
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+.checkout__order .checkout__order__ship span {
+	float: right;
+}
 .checkout__order .checkout__order__subtotal {
 	font-size: 18px;
 	color: #1c1c1c;
@@ -2513,7 +2525,7 @@ i {
 	font-size: 20px;
 	color: #1c1c1c;
 	font-weight: 700;
-	border-bottom: 1px solid #e1e1e1;
+	
 	padding-bottom: 15px;
 	margin-bottom: 25px;
 }

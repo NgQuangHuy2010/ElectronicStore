@@ -19,6 +19,7 @@ Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.u
 Route::post('/cart/remove', [CartController::class, 'removeItem'])->name('cart.remove');
 Route::get('/cart/item-count', [CartController::class, 'GetCartItemCount'])->name('User.GetCartItemCount');
 Route::match(['get', 'post'],'/checkout', [CheckoutController::class, 'Index'])->name('User.CheckoutIndex');
+Route::post('/checkout/payment', [CheckoutController::class, 'CheckoutPost'])->name('User.CheckoutPost');
 
 //end route user
 
