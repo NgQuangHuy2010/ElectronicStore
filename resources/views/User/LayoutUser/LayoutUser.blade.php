@@ -212,8 +212,6 @@
     <section class="hero">
         <div class="container">
             <div class="row">
-
-
                 <div class="col-lg-3">
                     <div
                         class="hero__categories {{ Route::currentRouteName() == 'User.Home' ? 'expanded' : 'collapsed' }}">
@@ -353,7 +351,7 @@
     <!-- Footer Section End -->
     <!-- Js Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    
+
     <script src="{{asset('public/User')}}/js/bootstrap.min.js"></script>
     <script src="{{asset('public/User')}}/js/jquery-ui.min.js"></script>
     <script src="{{asset('public/User')}}/js/jquery.slicknav.js"></script>

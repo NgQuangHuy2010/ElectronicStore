@@ -59,7 +59,7 @@
                             <div class="row my-5">
                                 <!-- Nhà sản xuất -->
                                 <div class="col-sm-6">
-                                    <label for="producer" class="col-form-label">Nhà sản xuất </label>
+                                    <label for="producer" class="col-form-label">Hãng </label>
                                     <input value="{{ old('producer') }}" name="producer" type="text"
                                         class="form-control">
                                     {!! $errors->first('producer', '<div class="has-error text-danger">:message</div>') !!}
@@ -67,7 +67,7 @@
 
                                 <!-- Nguồn gốc -->
                                 <div class="col-sm-6">
-                                    <label for="origin" class="col-form-label">Nguồn gốc </label>
+                                    <label for="origin" class="col-form-label">Nơi sản xuất </label>
                                     <input value="{{ old('origin') }}" name="origin" type="text" class="form-control">
                                     {!! $errors->first('origin', '<div class="has-error text-danger">:message</div>') !!}
                                 </div>

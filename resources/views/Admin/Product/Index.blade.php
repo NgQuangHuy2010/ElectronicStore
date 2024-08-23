@@ -43,13 +43,13 @@
                                     <td>{{$value['id']}}</td>
                                     <td>{{$value->Category->name}}</td>
                                     <!--Category ở đây là belongsTo trong model Product -->
-                                    <td>{{$value['name_product']}}</td>
+                                    <td  style="max-width: 300px;  word-wrap: break-word;  overflow-wrap: break-word;">{{$value['name_product']}}</td>
                                     <td><img width="70" src="{{asset('public/file/img/img_product/' . $value->image)}}"
                                             alt=""></td>
                                     <td>  {{ number_format($value['price_product'], 0, ',', '.') }} VNĐ</td>
                                     <td>{{ number_format($value['discount'], 0, ',', '.') }} VNĐ</td>
-                                    <td>{{$value['model']}}</td>
-                                    <td>
+                                    <td class="text-truncate">{{$value['model']}}</td>
+                                    <td style="max-width: 300px;">
                                         <a href="{{route('Admin.ProductUpdate', $value['id'])}}" class="px-2"><i
                                                 class="bi bi-pencil-square" style="color:green;"></i></a>
                                         <a href="{{route('Admin.ProductDelete', $value['id'])}}"

@@ -381,7 +381,6 @@ i {
 }
 
 .spad {
-	padding-top: 100px;
 	padding-bottom: 100px;
 }
 
@@ -801,7 +800,8 @@ i {
 }
 
 .hero.hero-normal .hero__categories {
-	position: relative;
+	position: fixed;
+	
 }
 
 .hero.hero-normal .hero__categories ul {
@@ -812,6 +812,7 @@ i {
 	width: 100%;
 	z-index: 99;
 	background: #ffffff;
+	
 }
 
 .hero.hero-normal .hero__search {
@@ -852,6 +853,7 @@ i {
 	padding-left: 40px;
 	padding-top: 10px;
 	padding-bottom: 12px;
+	
 }
 
 .hero__categories ul li {

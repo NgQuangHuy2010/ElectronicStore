@@ -88,8 +88,8 @@
                             <!-- <span class="badge badge-danger">-14%</span> -->
                             <div>
                                 <p class="my-0">Model:&nbsp;{{$product->model}}</p>
-                                <p class="my-1">Xuất xứ:&nbsp; {{$product->producer}}</p>
-                                <p class="my-1">Nhà sản xuất:&nbsp;{{$product->origin}}</p>
+                                <p class="my-1">Hãng:&nbsp; {{$product->producer}}</p>
+                                <p class="my-1">Nơi sản xuất:&nbsp;{{$product->origin}}</p>
                             </div>
                         </div>
                     </div>
@@ -127,8 +127,8 @@
 
                             <div>
                                 <p class="my-0">Model:&nbsp;{{$product->model}}</p>
-                                <p class="my-1">Xuất xứ:&nbsp; {{$product->producer}}</p>
-                                <p class="my-1">Nhà sản xuất:&nbsp;{{$product->origin}} </p>
+                                <p class="my-1">Hãng:&nbsp; {{$product->producer}}</p>
+                                <p class="my-1">Nơi sản xuất:&nbsp;{{$product->origin}} </p>
                             </div>
 
                         </div>
