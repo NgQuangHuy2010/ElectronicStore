@@ -1316,7 +1316,7 @@ i {
 -----------------------*/
 
 .sidebar__item {
-	margin-bottom: 35px;
+	margin-bottom: 15px;
 }
 
 .sidebar__item.sidebar__item__color--option {
@@ -1367,7 +1367,7 @@ i {
 	height: 1px;
 	width: 5px;
 	background: #dd2222;
-	content: "";
+
 }
 
 .price-range-wrap .range-slider .price-input input {
