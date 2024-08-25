@@ -858,7 +858,71 @@ i {
 
 .hero__categories ul li {
 	list-style: none;
+	position: relative; /* Để định vị sub-menu */
+
 }
+
+.hero__categories ul li:hover > a {
+	color: #2577d6; /* Màu khi hover */
+}
+
+.hero__categories ul li .sub-menu {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 100%; /* Căn sub-menu sang bên phải */
+	min-width: 200px; /* Điều chỉnh để phù hợp với nội dung */
+	background-color: #ffffff;
+	border: 1px solid #ebebeb;
+	padding: 10px 20px;
+	z-index: 99;
+}
+
+.hero__categories ul li:hover > .sub-menu {
+	display: block;
+}
+
+.hero__categories ul li .sub-menu li {
+	padding: 5px 0; /* Giảm padding để sub-menu gọn gàng hơn */
+}
+
+.hero__categories ul li .sub-menu li a {
+	font-size: 15px; /* Điều chỉnh font-size để phù hợp */
+	color: #1c1c1c;
+	display: block;
+	line-height: 1.5;
+}
+
+.hero__categories ul li .sub-menu li a:hover {
+	color: #2577d6; /* Thay đổi màu khi hover */
+}
+.hero__categories ul li:has(.sub-menu) > a:after {
+	font-family: FontAwesome;
+    content: "\f105"; 
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #1c1c1c;
+}
+
+.hero__categories ul li .sub-menu li {
+    position: relative; /* Để định vị tam giác */
+    padding-left: 20px; /* Khoảng cách giữa tam giác và văn bản */
+}
+
+.hero__categories ul li .sub-menu li:before {
+    content: "\f054"; /* Mã Unicode cho mũi tên phải trong Font Awesome */
+    font-family: FontAwesome;
+    position: absolute;
+    left: 0; /* Đặt ký hiệu ở cạnh trái của mục con */
+    top: 50%;
+    transform: translateY(-50%); /* Căn chỉnh ký hiệu theo chiều dọc */
+    font-size: 13px;
+    color: #2577d6; /* Màu của ký hiệu */
+}
+
 
 .hero__categories ul li a {
 	font-size: 16px;

@@ -83,7 +83,7 @@
             </ul> 
         </nav> -->
         <div id="mobile-menu-wrap"></div>
-     
+
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i>nqht12345679@gmail.com</li>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                          
+
                             <div class="header__top__right__language">
                                 <img src="{{asset('public/User')}}/img/flag.png" alt="">
                                 <div>Vietnamese</div>
@@ -201,24 +201,35 @@
         </div>
     </header>
     <!-- Header Section End -->
+
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div
-                        class="hero__categories {{ Route::currentRouteName() == 'User.Home' ? 'expanded' : 'collapsed' }}">
+                    <div class="hero__categories ">  <!--{{ Route::currentRouteName() == 'User.Home' ? 'expanded' : 'collapsed' }}-->
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
                             <span>Danh mục sản phẩm</span>
                         </div>
                         <ul>
                             @foreach($ListCategory as $category)
-                                <li><a href="{{route('User.Product', $category->id)}}">{{$category->name}}</a></li>
+                                <li>
+                                    <a href="{{ route('User.Product', $category->id) }}">{{ $category->name }}</a>
+                                    <ul class="sub-menu">
+                                        <strong>Thương hiệu</strong>
+                                        @if(isset($ProducersByCategory[$category->id]) && !empty($ProducersByCategory[$category->id]))
+                                            @foreach($ProducersByCategory[$category->id] as $producer)
+                                                <li><a href="#">{{ $producer }}</a></li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
@@ -239,7 +250,7 @@
                         </div>
                     </div>
 
-                    @if(request()->is('/'))
+                   
                         <div class="hero__item set-bg">
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
@@ -270,7 +281,7 @@
                                 </a>
                             </div>
                         </div>
-                    @endif
+                    
 
 
 

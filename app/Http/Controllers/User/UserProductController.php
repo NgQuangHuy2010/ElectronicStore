@@ -51,12 +51,15 @@ class UserProductController extends Controller
     }
     
     private function filterProducts(Request $request, &$query) {
+        //Lấy giá trị của tham số min_price từ đối tượng $request
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
     
         if ($minPrice && $maxPrice) {
+            //Loại bỏ tất cả dấu chấm (.) trong chuỗi giá trị của $minPrice, $maxPrice
             $minPrice = intval(str_replace('.', '', $minPrice));
             $maxPrice = intval(str_replace('.', '', $maxPrice));
+            //chỉ chọn những sản phẩm có giá trị discount nằm giữa $minPrice và $maxPrice.
             $query->whereBetween('discount', [$minPrice, $maxPrice]);
         }
     }
