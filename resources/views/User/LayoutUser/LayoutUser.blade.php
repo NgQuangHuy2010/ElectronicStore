@@ -137,7 +137,7 @@
                             </div>
 
                             <div class="header__top__right__auth">
-                                <a><i class="fa fa-user"></i> Đăng nhập</a>
+                                <a href="{{Route('User.Login')}}"><i class="fa fa-user"></i> Đăng nhập</a>
                             </div>
 
                         </div>
@@ -217,10 +217,13 @@
                                 <li>
                                     <a href="{{ route('User.Product', $category->id) }}">{{ $category->name }}</a>
                                     <ul class="sub-menu">
-                                        <strong>Thương hiệu</strong>
+                                        <strong class="py-3">Thương hiệu</strong>
                                         @if(isset($ProducersByCategory[$category->id]) && !empty($ProducersByCategory[$category->id]))
                                             @foreach($ProducersByCategory[$category->id] as $producer)
-                                                <li><a href="#">{{ $producer }}</a></li>
+                                            <!-- {{ urlencode($producer) }} mã hóa (encode) giá trị của biến $producer để đảm bảo nó an toàn khi sử dụng trong URL. 
+                                              urlencode sẽ thay thế các ký tự đặc biệt (như dấu cách, dấu &, v.v.) bằng các ký tự hợp lệ trong URL 
+                                              Ở UserProductController đã có truy vấn tìm theo hãng nên chỉ cần truyền query string thêm vào trên Url sẽ get ra được -->
+                                            <li><a href="{{ route('User.Product', $category->id) }}?producer={{ urlencode($producer) }}">{{ $producer }}</a></li>
                                             @endforeach
                                         @endif
                                     </ul>

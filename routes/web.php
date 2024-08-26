@@ -5,9 +5,10 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\UserProductController;
+use App\Http\Controllers\User\VerificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
-
+use App\Http\Controllers\User\LoginController;
 
 //route user
 Route::get("/", [HomeController::class, 'Index'])->name("User.Home");
@@ -18,8 +19,20 @@ Route::post('/cart/add', [CartController::class, 'AddToCart'])->name('User.AddTo
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'removeItem'])->name('cart.remove');
 Route::get('/cart/item-count', [CartController::class, 'GetCartItemCount'])->name('User.GetCartItemCount');
-Route::match(['get', 'post'],'/checkout', [CheckoutController::class, 'Index'])->name('User.CheckoutIndex');
+Route::match(['get', 'post'], '/checkout', [CheckoutController::class, 'Index'])->name('User.CheckoutIndex');
 Route::post('/checkout/payment', [CheckoutController::class, 'CheckoutPost'])->name('User.CheckoutPost');
+//login
+Route::match(['get', 'post'], '/login', [LoginController::class, 'Login'])->name('User.Login');
+Route::match(['get', 'post'], '/register', [LoginController::class, 'Register'])->name('User.Register');
+// Route xác thực email
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'Verify'])
+    ->middleware(['signed'])
+    ->name('verification.verify');
+
+// Route gửi lại email xác thực
+Route::post('/email/resend', [VerificationController::class, 'Resend'])
+    ->middleware(['auth'])
+    ->name('verification.resend');
 
 //end route user
 
@@ -38,4 +51,13 @@ Route::prefix('system')->group(function () {
     Route::match(['get', 'post'], "/admin/product/create", [ProductController::class, 'Create'])->name("Admin.ProductCreate");
     Route::match(['get', 'post'], "/admin/product/update/{id}", [ProductController::class, 'Update'])->name("Admin.ProductUpdate");
     Route::get("/admin/product/delete/{id}", [ProductController::class, 'Delete'])->name("Admin.ProductDelete");
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

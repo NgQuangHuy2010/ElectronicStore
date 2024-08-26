@@ -41,12 +41,9 @@
                                                         'sort' => request()->get('sort')
                                                     ]);                                      
                                                 @endphp
-
                                                 <!-- Tạo liên kết cho nhà sản xuất hiện tại -->
-                                                <!-- 
-                                                                                                        - Nếu nhà sản xuất đang hoạt động, thêm lớp CSS 'active' vào liên kết
-                                                                                                        - URL liên kết được xây dựng bằng cách nối URL hiện tại với chuỗi truy vấn mới
-                                                                                                    -->
+                                                <!--  - Nếu nhà sản xuất đang hoạt động, thêm lớp CSS 'active' vào liên kết
+                                                     - URL liên kết được xây dựng bằng cách nối URL hiện tại với chuỗi truy vấn mới -->
                                                 <a class="btn btn-light border border-secondary mx-1 {{ $isActive ? 'active' : '' }}"
                                                     href="{{ url()->current() . '?' . $queryString }}">
                                                     {{ $producer }}
@@ -85,8 +82,8 @@
                                 <div class="dropdown-menu p-4" aria-labelledby="dropdownMenuButton"
                                     style="min-width: 400px;">
                                     <form method="GET" action="{{ url()->current() }}">
-                                    <input type="hidden" name="producer" value="{{ request()->get('producer') }}">
-                                    <input type="hidden" name="sort" value="{{ request()->get('sort') }}">
+                                        <input type="hidden" name="producer" value="{{ request()->get('producer') }}">
+                                        <input type="hidden" name="sort" value="{{ request()->get('sort') }}">
                                         <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
                                             data-min="100000" data-max="100000000">
                                             <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
@@ -157,7 +154,7 @@
     </div>
 </section>
 <script>
-    $(function() {
+    $(function () {
         // Lấy giá trị từ URL hoặc form
         var minPrice = parseInt("{{ request()->input('min_price', 100000) }}".replace(/\./g, ''));
         var maxPrice = parseInt("{{ request()->input('max_price', 100000000) }}".replace(/\./g, ''));
@@ -168,7 +165,7 @@
             min: 100000,
             max: 100000000,
             values: [minPrice || 100000, maxPrice || 100000000],
-            slide: function(event, ui) {
+            slide: function (event, ui) {
                 $("#minamount").val(ui.values[0].toLocaleString('vi-VN') + '₫');
                 $("#maxamount").val(ui.values[1].toLocaleString('vi-VN') + '₫');
                 $("input[name='min_price']").val(ui.values[0]);
