@@ -20,7 +20,7 @@
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto my-2">
             @if (session('status'))
                 <div class="alert alert-info">
                     {{ session('status') }}

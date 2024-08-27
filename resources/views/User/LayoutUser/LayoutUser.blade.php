@@ -110,11 +110,11 @@
 
                             <div class="header__top__right__language">
                                 <img src="{{asset('public/User')}}/img/flag.png" alt="">
-                                <div>Vietnamese</div>
+                                <div>Tiếng Việt</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
 
-                                    <li><a href="#">English</a></li>
+                                    <li><a href="#">Tiếng anh</a></li>
                                 </ul>
                             </div>
 

@@ -35,7 +35,7 @@
 
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="floatingName" name="name" placeholder="Fullname" value="{{ old('name') }}">
-                            <label for="floatingName">Họ tên</label>
+                            <label for="floatingName">Họ tên <span class="text-danger">*</span></label>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -43,14 +43,14 @@
                         
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" name="email" placeholder="name@example.com" value="{{ old('email') }}">
-                            <label for="floatingInput">Email</label>
+                            <label for="floatingInput">Email <span class="text-danger">*</span></label>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="floatingPhone" name="phone" placeholder="Phone" value="{{ old('phone') }}">
+                            <input type="number" class="form-control @error('phone') is-invalid @enderror" id="floatingPhone" name="phone" placeholder="Phone" value="{{ old('phone') }}">
                             <label for="floatingPhone">Số điện thoại</label>
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -59,7 +59,7 @@
                         
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" name="password" placeholder="Password">
-                            <label for="floatingPassword">Mật khẩu</label>
+                            <label for="floatingPassword">Mật khẩu <span class="text-danger">*</span></label>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -67,7 +67,7 @@
                         
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="floatingConfirmPassword" name="password_confirmation" placeholder="ConfirmPassword">
-                            <label for="floatingConfirmPassword">Xác nhận mật khẩu</label>
+                            <label for="floatingConfirmPassword">Xác nhận mật khẩu <span class="text-danger">*</span></label>
                             @error('password_confirmation')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
